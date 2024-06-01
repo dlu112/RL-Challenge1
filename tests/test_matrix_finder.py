@@ -3,7 +3,7 @@ import unittest
 from matrix_finder import MatrixFinder
 
 class TestMatrixFinder(unittest.TestCase):
-    # Initialize test matrices
+    # Initialize test matrices and matrix finders
     def setUp(self):
         self.test_matrix = [[0, 3.5, 6, 9],
                             [10, 13.5, 16, 19],
