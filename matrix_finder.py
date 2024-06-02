@@ -38,7 +38,6 @@ class MatrixFinder:
         self._exec_time_ms = 0
         self.state = False
         
-
     def __log_time(self):
         """Log execution time to console"""
 
