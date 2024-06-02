@@ -5,18 +5,20 @@ from matrix_finder import MatrixFinder
 class TestMatrixFinder(unittest.TestCase):
     # Initialize test matrices and matrix finders
     def setUp(self):
+        debug = True
+
         self.test_matrix = [[0, 3.5, 6, 9],
                             [10, 13.5, 16, 19],
                             [20, 23.5, 26, 29],
                             [30, 33.5, 36, 39],
                             [40, 43.5, 46, 49],
                             [50, 53.5, 56, 59]]
-        self.test_matrix_finder = MatrixFinder(self.test_matrix, True)
+        self.test_matrix_finder = MatrixFinder(self.test_matrix, debug)
 
         self.test_matrix_2 = [[0, 3],
                               [10, "apple", 13],
                               [20, 23]]
-        self.test_matrix_finder_2 = MatrixFinder(self.test_matrix_2, True)
+        self.test_matrix_finder_2 = MatrixFinder(self.test_matrix_2, debug)
 
         self.test_matrix_3 = [[0, 3],
                               [5, 6],
@@ -24,20 +26,20 @@ class TestMatrixFinder(unittest.TestCase):
                               ["banana", 10, 13],
                               [15, 16],
                               [20, 23]]
-        self.test_matrix_finder_3 = MatrixFinder(self.test_matrix_3, True)
+        self.test_matrix_finder_3 = MatrixFinder(self.test_matrix_3, debug)
 
         self.test_matrix_4 = [[1],
                               [3],
                               [5],
                               [7],
                               [9]]
-        self.test_matrix_finder_4 = MatrixFinder(self.test_matrix_4, True)
+        self.test_matrix_finder_4 = MatrixFinder(self.test_matrix_4, debug)
 
         self.test_matrix_5 = [[1, 3, 5, 7, 9]]
-        self.test_matrix_finder_5 = MatrixFinder(self.test_matrix_5, True)
+        self.test_matrix_finder_5 = MatrixFinder(self.test_matrix_5, debug)
 
         self.test_matrix_6 = [[5]]
-        self.test_matrix_finder_6 = MatrixFinder(self.test_matrix_6, True)
+        self.test_matrix_finder_6 = MatrixFinder(self.test_matrix_6, debug)
 
     # MatrixFinder gets the correct number of rows
     def test_rows(self):
