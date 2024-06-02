@@ -11,12 +11,12 @@ class TestMatrixFinder(unittest.TestCase):
                             [30, 33.5, 36, 39],
                             [40, 43.5, 46, 49],
                             [50, 53.5, 56, 59]]
-        self.test_matrix_finder = MatrixFinder(self.test_matrix)
+        self.test_matrix_finder = MatrixFinder(self.test_matrix, True)
 
         self.test_matrix_2 = [[0, 3],
                               [10, "apple", 13],
                               [20, 23]]
-        self.test_matrix_finder_2 = MatrixFinder(self.test_matrix_2)
+        self.test_matrix_finder_2 = MatrixFinder(self.test_matrix_2, True)
 
         self.test_matrix_3 = [[0, 3],
                               [5, 6],
@@ -24,32 +24,32 @@ class TestMatrixFinder(unittest.TestCase):
                               ["banana", 10, 13],
                               [15, 16],
                               [20, 23]]
-        self.test_matrix_finder_3 = MatrixFinder(self.test_matrix_3)
+        self.test_matrix_finder_3 = MatrixFinder(self.test_matrix_3, True)
 
         self.test_matrix_4 = [[1],
                               [3],
                               [5],
                               [7],
                               [9]]
-        self.test_matrix_finder_4 = MatrixFinder(self.test_matrix_4)
+        self.test_matrix_finder_4 = MatrixFinder(self.test_matrix_4, True)
 
         self.test_matrix_5 = [[1, 3, 5, 7, 9]]
-        self.test_matrix_finder_5 = MatrixFinder(self.test_matrix_5)
+        self.test_matrix_finder_5 = MatrixFinder(self.test_matrix_5, True)
 
         self.test_matrix_6 = [[5]]
-        self.test_matrix_finder_6 = MatrixFinder(self.test_matrix_6)
+        self.test_matrix_finder_6 = MatrixFinder(self.test_matrix_6, True)
 
     # MatrixFinder gets the correct number of rows
     def test_rows(self):
-        self.assertEqual(self.test_matrix_finder.m, 6, "Incorrect number of rows")
+        self.assertEqual(self.test_matrix_finder._m, 6, "Incorrect number of rows")
 
     # MatrixFinder gets the correct number of columns
     def test_cols(self):
-        self.assertEqual(self.test_matrix_finder.n, 4, "Incorrect number of columns")
+        self.assertEqual(self.test_matrix_finder._n, 4, "Incorrect number of columns")
 
     # Each row is the correct length
     def test_row_lengths(self):
-        for row in self.test_matrix_finder.matrix:
+        for row in self.test_matrix_finder._matrix:
             self.assertEqual(len(row), 4, "A row in the matrix has the wrong length")
 
     # Finds target correctly

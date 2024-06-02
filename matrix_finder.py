@@ -1,5 +1,3 @@
-# Programming Challenge
-# Part 1: Algorithmic Challenge
 import time
 from common import binary_search
 
@@ -26,23 +24,26 @@ class MatrixFinder:
         """Initialize MatrixFinder matrix input.
         
         Args:
-            matrix (array[float][float]): Nested list of floats representing a 2d matrix.
+            matrix (array[float][float]): 
+                Nested list of floats representing a 2d matrix.
             debug (boolean): Whether to output debug messages, default False.
         """
 
-        self.matrix = matrix
-        self.n = len(matrix[0])
-        self.m = len(matrix)
-        self.x = None
-        self.exec_time_ms = 0
-        self.state = False
+        self._matrix = matrix
         self.debug = debug
+
+        self._m = len(matrix)
+        self._n = len(matrix[0])
+        self.x = None
+        self._exec_time_ms = 0
+        self.state = False
+        
 
     def __log_time(self):
         """Log execution time to console"""
 
         if self.debug:
-            print("Execution time =", self.exec_time_ms, "ms")
+            print("Execution time =", self._exec_time_ms, "ms")
 
     def __select_row(self):
         """Modified binary search to select row target is in.
@@ -53,7 +54,7 @@ class MatrixFinder:
         """
 
         low = 0
-        high = self.m - 1
+        high = self._m - 1
         mid = 0
 
         while low <= high:
@@ -62,11 +63,11 @@ class MatrixFinder:
             if mid == high:
                 return mid
             
-            mid_val = self.matrix[mid][0]
+            mid_val = self._matrix[mid][0]
      
             if mid_val < self.x:
                 # check if this row contains the target
-                next_val = self.matrix[mid + 1][0]
+                next_val = self._matrix[mid + 1][0]
 
                 if next_val > self.x:
                     return mid
@@ -74,7 +75,7 @@ class MatrixFinder:
             
             elif mid_val > self.x:
                 # check if the previous row contains the target
-                prev_val = self.matrix[mid - 1][0]
+                prev_val = self._matrix[mid - 1][0]
 
                 if prev_val < self.x:
                     return mid - 1
@@ -99,24 +100,21 @@ class MatrixFinder:
         row = self.__select_row()
         if row >= 0:
             # search for containing column
-            col = binary_search(self.matrix[row], self.x)
+            col = binary_search(self._matrix[row], self.x)
             if col >= 0:
                 self.state = True
                 if self.debug:
                     print("Target at [{}][{}]".format(row, col))
     
-    def find(self, x, debug=False):
+    def find(self, x):
         """Execute search algorithm and record execution time.
         
         Args:
             x (float): Target value.
-            debug (bool): Whether to output debug messages, default False.
 
         Returns:
             A boolean result for if the target is found or not.
         """
-
-        self.debug = debug
 
         # use process time instead of performance time for accuracy
         start_time = time.process_time_ns()
@@ -129,7 +127,7 @@ class MatrixFinder:
                 print("Error: TypeError detected")
             self.state = False
 
-        self.exec_time_ms = (time.process_time_ns() - start_time) // 1000
+        self._exec_time_ms = (time.process_time_ns() - start_time) // 1000
         
         if self.debug:
             self.__log_time()
